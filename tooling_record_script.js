@@ -13,6 +13,7 @@ const g_iLength_Row			= 30;
 const g_iNumber_Header 		= 2;
 const g_iNumber_Row			= g_iNumber_Header + g_iLength_Row;
 const g_iNumber_FormRow		= 28;
+const g_sDataStart			= "C";
 
 // setting for sheet reset
 const g_bResetCellValue 	= false;
