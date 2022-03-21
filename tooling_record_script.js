@@ -19,9 +19,9 @@ const g_sDataStart			= "C";
 const g_bResetCellValue 	= false;
 const g_bResetFillColor 	= true;
 const g_bResetConFormat 	= true;
-const g_bRunOverView		= true;
-const g_bRunToolingForm		= true;
-const g_iRunToolingFormNum	= 0;
+const g_bRunOverViewSheet	= false;
+const g_bRunToolFormSheet	= true;
+const g_iRunToolFormPos		= 0;
 const g_sMainSheet			= "OVERVIEW";
 
 let left					= 0;
@@ -38,7 +38,7 @@ let letterBuff4				= "";
 
 Excel.run(async (context) =>
 {
-	if( g_bRunOverView ) {
+	if( g_bRunOverViewSheet ) {
 		let sheet = context.workbook.worksheets.getItem(g_sMainSheet);
 
 		await context.sync().then(() => {}).catch((err) => {
@@ -57,16 +57,16 @@ Excel.run(async (context) =>
 		BuildToolingOverView(sheet);
 	}
 	
-	if(g_bRunToolingForm)
+	if(g_bRunToolFormSheet)
 	{
-		if( g_iRunToolingFormNum != 0 )
+		if( g_iRunToolFormPos != 0 )
 		{
-			sheet = context.workbook.worksheets.getItem( g_iRunToolingFormNum.toString() );
+			sheet = context.workbook.worksheets.getItem( g_iRunToolFormPos.toString() );
 			
 			await context.sync().then(() => {}).catch((err) => {
 				if(err) {
-				sheet = context.workbook.worksheets.add( g_iRunToolingFormNum.toString() );
-					console.log(`"**** Sheet ${g_iRunToolingFormNum} has been created ****"`);
+				sheet = context.workbook.worksheets.add( g_iRunToolFormPos.toString() );
+					console.log(`"**** Sheet ${g_iRunToolFormPos} has been created ****"`);
 				}
 			});
 			
